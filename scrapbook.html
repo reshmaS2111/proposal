@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>❤️ Our Love Scrapbook ❤️</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+overflow-x:hidden;
+color:white;
+}
+
+#bgVideo{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-2;
+}
+
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.45);
+z-index:-1;
+}
+
+h1{
+text-align:center;
+font-size:60px;
+padding-top:40px;
+text-shadow:0 0 20px #fff;
+}
+
+.subtitle{
+text-align:center;
+font-size:22px;
+margin-bottom:30px;
+}
+
+.book{
+width:85%;
+margin:auto;
+padding-bottom:40px;
+}
+
+.card{
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(12px);
+border-radius:25px;
+padding:25px;
+margin:30px 0;
+box-shadow:0 0 30px rgba(255,255,255,.4);
+transition:.4s;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+.card h2{
+font-size:30px;
+margin-bottom:15px;
+}
+
+.card p{
+font-size:20px;
+line-height:1.8;
+}
+
+.surpriseBox{
+text-align:center;
+margin:40px 0;
+}
+
+.surpriseBtn{
+padding:15px 30px;
+margin:10px;
+border:none;
+border-radius:40px;
+font-size:18px;
+cursor:pointer;
+background:#ff1493;
+color:white;
+}
+
+#message{
+margin-top:20px;
+font-size:24px;
+font-weight:bold;
+}
+
+.nextBtn{
+display:block;
+margin:40px auto;
+padding:15px 35px;
+border:none;
+border-radius:40px;
+font-size:22px;
+cursor:pointer;
+background:#ff1493;
+color:white;
+}
+
+.floating{
+position:fixed;
+font-size:30px;
+animation:fall linear forwards;
+pointer-events:none;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-100px);
+opacity:1;
+}
+100%{
+transform:translateY(110vh);
+opacity:0;
+}
+}
+
+.butterfly{
+position:fixed;
+font-size:35px;
+animation:fly linear forwards;
+pointer-events:none;
+}
+
+@keyframes fly{
+0%{
+left:-100px;
+}
+100%{
+left:110%;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<video autoplay muted loop id="bgVideo">
+<source src="marumagal.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<audio id="bgMusic" loop>
+<source src="munbe_vaa_cover.mp3" type="audio/mpeg">
+</audio>
+
+<h1>❤️📖 Our Love Scrapbook 📖❤️</h1>
+
+<p class="subtitle">
+💋 A collection of sweet memories, feelings and moments 💋
+</p>
+
+<div class="book">
+
+<div class="card">
+<h2>💌 Sweet Memories 💌</h2>
+<p>
+❤️ Every conversation became a beautiful memory.
+Every smile became a reason to smile back. ❤️
+</p>
+</div>
+
+<div class="card">
+<h2>💋 Special Moments 💋</h2>
+<p>
+😘 Some moments pass,
+but the feelings remain forever. 😘
+</p>
+</div>
+
+<div class="card">
+<h2>🌹 Beautiful Feelings 🌹</h2>
+<p>
+💕 Some people enter our lives unexpectedly
+and stay in our hearts forever. 💕
+</p>
+</div>
+
+<div class="card">
+<h2>❤️ Secret Message ❤️</h2>
+<p>
+💋 If I could relive a thousand moments,
+I would choose the ones with you. 💋
+</p>
+</div>
+
+<div class="card">
+<h2>💍 Forever & Always 💍</h2>
+<p>
+🌈 The story continues...
+and the best chapters are still ahead. ❤️
+</p>
+</div>
+
+</div>
+
+<div class="surpriseBox">
+
+<button class="surpriseBtn" onclick="show1()">
+🎁 Surprise 1
+</button>
+
+<button class="surpriseBtn" onclick="show2()">
+🎁 Surprise 2
+</button>
+
+<button class="surpriseBtn" onclick="show3()">
+🎁 Surprise 3
+</button>
+
+<p id="message"></p>
+
+</div>
+
+<button class="nextBtn"
+onclick="window.location='quiz.html'">
+🎮 Play Our Love Quiz ❤️
+</button>
+
+<script>
+
+document.addEventListener("click", function() {
+document.getElementById("bgMusic").play();
+}, { once: true });
+
+function show1(){
+document.getElementById("message").innerHTML=
+"❤️ You are one of the most special people in my life ❤️";
+}
+
+function show2(){
+document.getElementById("message").innerHTML=
+"💋 Every memory with you is a treasure 💋";
+}
+
+function show3(){
+document.getElementById("message").innerHTML=
+"🌹 The best chapters of our story are yet to come 🌹";
+}
+
+setInterval(() => {
+
+const item=document.createElement("div");
+
+const emojis=[
+"❤️","💋","😘","💕","🌹","✨"
+];
+
+item.innerHTML=
+emojis[Math.floor(Math.random()*emojis.length)];
+
+item.classList.add("floating");
+
+item.style.left=
+Math.random()*100+"vw";
+
+item.style.fontSize=
+(Math.random()*25+20)+"px";
+
+item.style.animationDuration=
+(Math.random()*5+4)+"s";
+
+document.body.appendChild(item);
+
+setTimeout(()=>{
+item.remove();
+},9000);
+
+},250);
+
+function createButterfly(){
+
+const butterfly=document.createElement("div");
+
+butterfly.classList.add("butterfly");
+
+butterfly.innerHTML="🦋";
+
+butterfly.style.top=
+Math.random()*80+"%";
+
+butterfly.style.animationDuration=
+(Math.random()*10+8)+"s";
+
+document.body.appendChild(butterfly);
+
+setTimeout(()=>{
+butterfly.remove();
+},18000);
+
+}
+
+setInterval(createButterfly,3000);
+
+</script>
+
+</body>
+</html>

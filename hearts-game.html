@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>❤️ Catch My Heart ❤️</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+overflow:hidden;
+color:white;
+text-align:center;
+}
+
+#bgVideo{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-2;
+}
+
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.45);
+z-index:-1;
+}
+
+h1{
+margin-top:30px;
+font-size:55px;
+text-shadow:0 0 20px white;
+}
+
+.score{
+font-size:30px;
+margin-top:15px;
+font-weight:bold;
+}
+
+.heart{
+position:absolute;
+font-size:50px;
+cursor:pointer;
+user-select:none;
+animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.2);}
+100%{transform:scale(1);}
+}
+
+#winBox{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(15px);
+padding:30px;
+border-radius:25px;
+width:90%;
+max-width:600px;
+box-shadow:0 0 30px rgba(255,255,255,.4);
+}
+
+#winBox h2{
+font-size:40px;
+margin-bottom:15px;
+}
+
+#winBox p{
+font-size:24px;
+line-height:1.8;
+}
+
+.nextBtn{
+margin-top:20px;
+padding:15px 35px;
+border:none;
+border-radius:40px;
+background:#ff1493;
+color:white;
+font-size:22px;
+cursor:pointer;
+}
+
+.floating{
+position:fixed;
+font-size:30px;
+animation:fall linear forwards;
+pointer-events:none;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-100px);
+opacity:1;
+}
+100%{
+transform:translateY(110vh);
+opacity:0;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<video autoplay muted loop id="bgVideo">
+<source src="sss.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<audio id="bgMusic" loop>
+<source src="munbe.mp3.mp3" type="audio/mpeg">
+</audio>
+
+<h1>❤️ Catch My Heart ❤️</h1>
+
+<div class="score">
+Score: <span id="score">0</span>/25 ❤️
+</div>
+
+<div id="gameArea"></div>
+
+<div id="winBox">
+
+<h2>🎉 Congratulations ❤️</h2>
+
+<p>
+💖 You Caught My Heart 💖
+<br><br>
+💌 Secret Message 💌
+<br><br>
+Among all the people in this world,
+there is someone who owns a very special
+place in my heart ❤️
+</p>
+
+<button class="nextBtn"
+onclick="window.location='magic-door.html'">
+🔐 Unlock Final Secret ❤️
+</button>
+
+</div>
+
+<script>
+
+document.addEventListener("click", function() {
+document.getElementById("bgMusic").play();
+}, { once: true });
+
+let score=0;
+
+function createHeart(){
+
+if(score>=25) return;
+
+const heart=document.createElement("div");
+
+heart.classList.add("heart");
+
+const emojis=[
+"❤️","💋","💕","😘","🌹"
+];
+
+heart.innerHTML=
+emojis[Math.floor(Math.random()*emojis.length)];
+
+heart.style.left=
+Math.random()*(window.innerWidth-100)+"px";
+
+heart.style.top=
+Math.random()*(window.innerHeight-150)+"px";
+
+heart.onclick=function(){
+
+score++;
+
+document.getElementById("score").innerHTML=score;
+
+heart.remove();
+
+if(score>=25){
+
+document.getElementById("winBox").style.display="block";
+
+}
+
+};
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},3000);
+
+}
+
+setInterval(createHeart,700);
+
+setInterval(() => {
+
+const item=document.createElement("div");
+
+const emojis=[
+"❤️","💋","😘","💕","🌹","✨"
+];
+
+item.innerHTML=
+emojis[Math.floor(Math.random()*emojis.length)];
+
+item.classList.add("floating");
+
+item.style.left=
+Math.random()*100+"vw";
+
+item.style.fontSize=
+(Math.random()*25+20)+"px";
+
+item.style.animationDuration=
+(Math.random()*5+4)+"s";
+
+document.body.appendChild(item);
+
+setTimeout(()=>{
+item.remove();
+},9000);
+
+},250);
+
+</script>
+
+</body>
+</html>
